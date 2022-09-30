@@ -100,7 +100,7 @@ export const ProductList = ({ productsList }) => {
                   <p>
                     R$
                     {productCart
-                      .reduce((acc, curr) => curr.price + acc, 0)
+                      .reduce((acc, curr) => curr.price * curr.qntd + acc, 0)
                       .toFixed(2)
                       .replace(".", ",")}
                   </p>
