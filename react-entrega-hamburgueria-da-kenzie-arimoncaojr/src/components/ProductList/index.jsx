@@ -4,17 +4,39 @@ import {
   ContainerProducts,
   ContainerCart,
   ContainerInBtn,
+  ListedsOnCart,
+  TotalValue,
 } from "./styles";
 import logo from "../../assets/Mask Group.png";
 import { Product } from "../Product";
 import { useState } from "react";
+import { Cart } from "../Cart";
 
 export const ProductList = ({ productsList }) => {
   const [productCart, setProductCart] = useState([]);
   const [focus, setFocus] = useState(false);
-  function putProduct(newObject) {
-    return setProductCart([...productCart, newObject]);
+
+  function addItem(newObject) {
+    let existingItem = productCart.some(
+      (element) => element.id === newObject.id
+    );
+
+    if (existingItem) {
+      const newItem = productCart.map((item) => {
+        if (item.id === newObject.id) {
+          return {
+            ...item,
+            qntd: item.qntd + 1,
+          };
+        }
+        return item;
+      });
+      setProductCart(newItem);
+    } else {
+      setProductCart([...productCart, newObject]);
+    }
   }
+
   console.log(productCart);
 
   return (
@@ -22,7 +44,7 @@ export const ProductList = ({ productsList }) => {
       <header>
         <div className="div-menu">
           <img src={logo} alt="" />
-          <ContainerInBtn focus={focus} className="div-input-btn">
+          <ContainerInBtn focus={focus}>
             {" "}
             <input
               onFocus={() => setFocus(true)}
@@ -44,7 +66,7 @@ export const ProductList = ({ productsList }) => {
               name={product.name}
               category={product.category}
               price={product.price}
-              addProduct={putProduct}
+              addProduct={addItem}
             />
           ))}
         </ContainerProducts>
@@ -58,22 +80,34 @@ export const ProductList = ({ productsList }) => {
               <span>Adicione itens</span>
             </div>
           ) : (
-            <div className="div-infos">
-              <ul>
-                {productCart.map((product) => (
-                  <li key={product.id}>
-                    <div>
-                      <img src={product.image} alt="" />
-                    </div>
-                    <div>
-                      <h4>{product.name}</h4>
-                      <p>{product.category}</p>
-                      <button type="button">Remover</button>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            <>
+              <ListedsOnCart>
+                <ul>
+                  {productCart.map((product) => (
+                    <Cart
+                      key={product.id}
+                      image={product.image}
+                      name={product.name}
+                      category={product.category}
+                      qntd={product.qntd}
+                    ></Cart>
+                  ))}
+                </ul>
+              </ListedsOnCart>
+              <TotalValue>
+                <div>
+                  <p>Total</p>
+                  <p>
+                    R$
+                    {productCart
+                      .reduce((acc, curr) => curr.price + acc, 0)
+                      .toFixed(2)
+                      .replace(".", ",")}
+                  </p>
+                </div>
+                <button type="button">Remover Todos</button>
+              </TotalValue>
+            </>
           )}
         </ContainerCart>
       </ContainerSecondary>

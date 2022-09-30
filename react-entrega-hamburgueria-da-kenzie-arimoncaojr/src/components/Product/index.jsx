@@ -25,6 +25,7 @@ export const Product = ({
               category: category,
               price: price,
               image: image,
+              qntd: 1,
             })
           }
         >
