@@ -15,17 +15,40 @@ export const Container = styled.div`
     width: 100%;
     height: 5rem;
     position: fixed;
+
+    @media (max-width: 1087px) {
+      height: 8rem;
+    }
   }
   header .div-menu {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
-    flex-wrap: wrap;
     width: 100%;
+
+    @media (max-width: 1087px) {
+      flex-wrap: nowrap;
+      flex-direction: column;
+      justify-content: center;
+      gap: 1rem;
+    }
   }
   header img {
     margin-left: 18.5rem;
+    cursor: pointer;
+
+    @media (min-width: 768px) {
+      :hover {
+        margin-top: -10px;
+        box-shadow: 0 2px 2px black;
+        transition: all 0.2s ease-in-out;
+      }
+    }
+
+    @media (max-width: 1088px) {
+      margin-left: unset;
+    }
   }
 `;
 
@@ -37,12 +60,17 @@ export const ContainerProducts = styled.div`
   width: 50%;
   gap: 10px;
 
-  @media (max-width: 768px) {
+  @media (max-width: 1087px) {
     display: flex;
     flex-wrap: unset;
     justify-content: flex-start;
     overflow-x: scroll;
     width: 90%;
+  }
+
+  h1 {
+    font-size: var(--font-title-1);
+    font-weight: var(--font-weight-1);
   }
 `;
 
@@ -57,6 +85,10 @@ export const ContainerSecondary = styled.div`
 export const ContainerCart = styled.div`
   display: flex;
   flex-direction: column;
+
+  @media (max-width: 1088px) {
+    width: 90%;
+  }
   .div-title {
     display: flex;
     align-items: center;
@@ -80,6 +112,10 @@ export const ContainerCart = styled.div`
     background-color: var(--grey-4);
     border-radius: 0px 0px 5px 5px;
     height: 9.875rem;
+
+    @media (max-width: 1088px) {
+      width: 100%;
+    }
   }
   h3 {
     font-size: var(--font-title-3);
@@ -102,7 +138,14 @@ export const ListedsOnCart = styled.div`
   background-color: var(--grey-4);
   height: 19.188rem;
 
+  @media (max-width: 1088px) {
+    width: 100%;
+  }
+
   ul {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
     overflow-y: scroll;
     width: 100%;
     height: 100%;
@@ -119,6 +162,10 @@ export const TotalValue = styled.div`
   border-radius: 0px 0px 5px 5px;
   border-top: 2px solid var(--grey-3);
   background-color: var(--grey-4);
+
+  @media (max-width: 1088px) {
+    width: 100%;
+  }
 
   div {
     width: 90%;
@@ -155,6 +202,10 @@ export const ContainerInBtn = styled.form`
   background-color: var(--color-white);
   width: var(--input-width-default);
   margin-right: 17rem;
+
+  @media (max-width: 1088px) {
+    margin-right: unset;
+  }
 
   button {
     border: transparent;

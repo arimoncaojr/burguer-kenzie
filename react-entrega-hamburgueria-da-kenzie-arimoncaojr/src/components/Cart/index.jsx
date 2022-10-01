@@ -1,22 +1,30 @@
+import { Li, DivImg, DivInfos, DivBtn } from "./styles";
+
 export const Cart = ({ productCart, removeItem }) => {
   return (
     <>
       {productCart.map((product) => (
-        <li key={product.id}>
-          <div>
+        <Li key={product.id}>
+          <DivImg>
             <img src={product.image} alt="" />
-          </div>
-          <div>
-            <h4>{product.name}</h4>
-            <p>{product.category}</p>
-            <div>
+          </DivImg>
+          <div className="container">
+            <DivInfos>
+              <h4>
+                {product.name.length > 14
+                  ? product.name.substring(0, 14) + "..."
+                  : product.name}
+              </h4>
+              <p>{product.category}</p>
+            </DivInfos>
+            <DivBtn>
               <button type="button" onClick={() => removeItem(product)}>
                 Remover
               </button>
               <p>Qntd: {product.qntd}</p>
-            </div>
+            </DivBtn>
           </div>
-        </li>
+        </Li>
       ))}
     </>
   );

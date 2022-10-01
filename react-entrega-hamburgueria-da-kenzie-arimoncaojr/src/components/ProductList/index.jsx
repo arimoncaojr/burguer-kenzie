@@ -12,7 +12,7 @@ import { Product } from "../Product";
 import { useState } from "react";
 import { Cart } from "../Cart";
 
-export const ProductList = ({ productsList }) => {
+export const ProductList = ({ productsList, searchProduct, backToHome }) => {
   const [productCart, setProductCart] = useState([]);
   const [focus, setFocus] = useState(false);
   const [descriptionInput, setDescriptionInput] = useState("");
@@ -60,44 +60,54 @@ export const ProductList = ({ productsList }) => {
     }
   }
 
-  function findProduct(product) {
-    setProductCart(
-      productCart.filter((element) => element.name === product.name)
-    );
-  }
-
-  console.log(productCart);
-
   return (
     <Container>
       <header>
         <div className="div-menu">
-          <img src={logo} alt="" />
-          <ContainerInBtn focus={focus}>
+          <img src={logo} alt="" onClick={() => backToHome()} />
+          <ContainerInBtn
+            focus={focus}
+            onSubmit={(event) => {
+              searchProduct(descriptionInput, event.preventDefault());
+            }}
+          >
             {" "}
             <input
               onFocus={() => setFocus(true)}
               onBlur={() => setFocus(false)}
               type="text"
               placeholder="Digitar Pesquisa"
+              onChange={(event) =>
+                setDescriptionInput(
+                  event.target.value
+                    .normalize("NFD")
+                    .replace(/([\u0300-\u036f]|[^0-9a-zA-Z])/g, "")
+                    .toLowerCase()
+                )
+              }
+              required
             />
-            <button type="button">Pesquisar</button>
+            <button type="submit">Pesquisar</button>
           </ContainerInBtn>
         </div>
       </header>
       <ContainerSecondary>
         <ContainerProducts>
-          {productsList.map((product) => (
-            <Product
-              key={product.id}
-              productId={product.id}
-              image={product.img}
-              name={product.name}
-              category={product.category}
-              price={product.price}
-              addProduct={addItem}
-            />
-          ))}
+          {productsList.map((product) =>
+            product.name !== "NotFind" ? (
+              <Product
+                key={product.id}
+                productId={product.id}
+                image={product.img}
+                name={product.name}
+                category={product.category}
+                price={product.price}
+                addProduct={addItem}
+              />
+            ) : (
+              <h1 key={product.id}>Produto Não Encontrado</h1>
+            )
+          )}
         </ContainerProducts>
         <ContainerCart>
           <div className="div-title">
