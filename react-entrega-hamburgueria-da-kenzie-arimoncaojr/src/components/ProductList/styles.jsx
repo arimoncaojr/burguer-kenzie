@@ -37,6 +37,7 @@ export const Container = styled.div`
   header img {
     margin-left: 18.5rem;
     cursor: pointer;
+    max-width: 100%;
 
     @media (min-width: 768px) {
       :hover {
@@ -50,6 +51,60 @@ export const Container = styled.div`
     @media (max-width: 1088px) {
       margin-left: unset;
     }
+  }
+`;
+
+export const ContainerInBtn = styled.form`
+  display: flex;
+  align-items: center;
+  border: 2px solid
+    ${(props) => (props.focus ? "var(--grey-1)" : "var(--grey-3)")};
+  border-radius: 8px;
+  background-color: var(--color-white);
+  width: var(--input-width-default);
+  margin-right: 17rem;
+
+  @media (max-width: 1088px) {
+    margin-right: unset;
+    width: 90%;
+  }
+
+  button {
+    z-index: 1;
+    border: transparent;
+    border-radius: 8px;
+    width: var(--button-width-default);
+    height: var(--button-height-default);
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    font-size: var(--font-text-2);
+    margin-right: 1rem;
+
+    @media (min-width: 768px) {
+      :hover {
+        transition: 0.5s ease-in;
+        background-color: #005a26;
+        -webkit-animation: swing 1s ease;
+        animation: swing 1s ease;
+        -webkit-animation-iteration-count: 1;
+        animation-iteration-count: 1;
+      }
+    }
+  }
+
+  input {
+    border: transparent;
+    height: var(--input-height-default);
+    border-radius: 8px;
+    border: 2px solid transparent;
+    padding: 0px 10px 0px 15px;
+    outline: none;
+    width: 100%;
+  }
+
+  input::placeholder {
+    font-size: var(--font-text-1);
+    color: var(--grey-3);
   }
 `;
 
@@ -250,56 +305,5 @@ export const TotalValue = styled.div`
         animation-iteration-count: 1;
       }
     }
-  }
-`;
-
-export const ContainerInBtn = styled.form`
-  display: flex;
-  align-items: center;
-  gap: 40px;
-  border: 2px solid
-    ${(props) => (props.focus ? "var(--grey-1)" : "var(--grey-3)")};
-  border-radius: 8px;
-  background-color: var(--color-white);
-  width: var(--input-width-default);
-  margin-right: 17rem;
-
-  @media (max-width: 1088px) {
-    margin-right: unset;
-  }
-
-  button {
-    border: transparent;
-    border-radius: 8px;
-    width: var(--button-width-default);
-    height: var(--button-height-default);
-    background-color: var(--color-primary);
-    color: var(--color-white);
-    font-size: var(--font-text-2);
-
-    @media (min-width: 768px) {
-      :hover {
-        transition: 0.5s ease-in;
-        background-color: #005a26;
-        -webkit-animation: swing 1s ease;
-        animation: swing 1s ease;
-        -webkit-animation-iteration-count: 1;
-        animation-iteration-count: 1;
-      }
-    }
-  }
-
-  input {
-    border: transparent;
-    height: var(--input-height-default);
-    border-radius: 8px;
-    border: 2px solid transparent;
-    padding: 0px 10px 0px 15px;
-    outline: none;
-  }
-
-  input::placeholder {
-    font-size: var(--font-text-1);
-    color: var(--grey-3);
   }
 `;
