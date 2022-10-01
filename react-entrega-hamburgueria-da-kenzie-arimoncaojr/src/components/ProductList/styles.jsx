@@ -217,6 +217,7 @@ export const TotalValue = styled.div`
     width: 90%;
     display: flex;
     justify-content: space-between;
+    margin-top: 1rem;
   }
   div p {
     font-size: var(--font-text-2);

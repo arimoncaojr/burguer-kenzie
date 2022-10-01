@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Li = styled.li`
   display: flex;
-  flex-wrap: wrap;
+  justify-content: center;
   align-items: center;
   gap: 10px;
   margin-top: 0.8rem;
