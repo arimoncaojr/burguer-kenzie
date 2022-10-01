@@ -61,7 +61,12 @@ export const DivBtn = styled.div`
 
     @media (min-width: 768px) {
       :hover {
+        transition: 0.5s ease-in;
         color: var(--grey-2);
+        -webkit-animation: swing 1s ease;
+        animation: swing 1s ease;
+        -webkit-animation-iteration-count: 1;
+        animation-iteration-count: 1;
       }
     }
   }

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { ProductList } from "./components/ProductList";
 import { api } from "./services/api";
 import { GlobalStyle } from "./styles/global";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   const [productsList, setProducts] = useState([]);
@@ -38,13 +39,14 @@ function App() {
   useEffect(() => {
     api
       .get(`/products`)
-      .then((res) => setProducts(res.data))
+      .then((res) => res.data.length === 6 && setProducts(res.data))
       .catch((err) => console.error(err));
   }, []);
 
   return (
     <>
       <GlobalStyle />
+      <ToastContainer position="top-center" autoClose={2000} />
       <ProductList
         productsList={productSearch.length > 0 ? productSearch : productsList}
         searchProduct={search}

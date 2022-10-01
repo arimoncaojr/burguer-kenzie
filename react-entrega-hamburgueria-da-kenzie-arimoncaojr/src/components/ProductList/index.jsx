@@ -11,6 +11,7 @@ import logo from "../../assets/Mask Group.png";
 import { Product } from "../Product";
 import { useState } from "react";
 import { Cart } from "../Cart";
+import { toast } from "react-toastify";
 
 export const ProductList = ({ productsList, searchProduct, backToHome }) => {
   const [productCart, setProductCart] = useState([]);
@@ -32,8 +33,10 @@ export const ProductList = ({ productsList, searchProduct, backToHome }) => {
         }
         return item;
       });
+      toast.warn("Você possui um produto igual no carrinho.");
       setProductCart(newItem);
     } else {
+      toast.success("Produto adicionado com sucesso!");
       setProductCart([...productCart, newObject]);
     }
   }
@@ -92,23 +95,30 @@ export const ProductList = ({ productsList, searchProduct, backToHome }) => {
         </div>
       </header>
       <ContainerSecondary>
-        <ContainerProducts>
-          {productsList.map((product) =>
-            product.name !== "NotFind" ? (
-              <Product
-                key={product.id}
-                productId={product.id}
-                image={product.img}
-                name={product.name}
-                category={product.category}
-                price={product.price}
-                addProduct={addItem}
-              />
-            ) : (
-              <h1 key={product.id}>Produto Não Encontrado</h1>
-            )
-          )}
-        </ContainerProducts>
+        {productsList.length > 0 ? (
+          <ContainerProducts>
+            {productsList.map((product) =>
+              product.name !== "NotFind" ? (
+                <Product
+                  key={product.id}
+                  productId={product.id}
+                  image={product.img}
+                  name={product.name}
+                  category={product.category}
+                  price={product.price}
+                  addProduct={addItem}
+                />
+              ) : (
+                <h1 key={product.id}>Produto Não Encontrado</h1>
+              )
+            )}
+          </ContainerProducts>
+        ) : (
+          <ContainerProducts>
+            <h1>Estamos em Manutenção, voltamos logo!</h1>
+            <div className="loader"></div>
+          </ContainerProducts>
+        )}
         <ContainerCart>
           <div className="div-title">
             <h2>Carrinho Compras</h2>

@@ -40,9 +40,10 @@ export const Container = styled.div`
 
     @media (min-width: 768px) {
       :hover {
-        margin-top: -10px;
-        box-shadow: 0 2px 2px black;
-        transition: all 0.2s ease-in-out;
+        -webkit-animation: swing 1s ease;
+        animation: swing 1s ease;
+        -webkit-animation-iteration-count: 1;
+        animation-iteration-count: 1;
       }
     }
 
@@ -66,6 +67,23 @@ export const ContainerProducts = styled.div`
     justify-content: flex-start;
     overflow-x: scroll;
     width: 90%;
+  }
+  .loader {
+    animation: is-rotating 1s infinite;
+    border: 6px solid #e5e5e5;
+    border-radius: 50%;
+    border-top-color: #51d4db;
+    height: 50px;
+    width: 50px;
+
+    @keyframes is-rotating {
+      to {
+        transform: rotate(1turn);
+      }
+    }
+    @media (max-width: 1087px) {
+      display: none;
+    }
   }
 
   h1 {
@@ -137,7 +155,21 @@ export const ListedsOnCart = styled.div`
   width: 22.813rem;
   background-color: var(--grey-4);
   height: 19.188rem;
-
+  animation: slideDown 2s;
+  @keyframes slideDown {
+    0% {
+      display: none;
+    }
+    15% {
+      margin-top: 50px;
+    }
+    50% {
+      margin-top: 20px;
+    }
+    100% {
+      margin-top: 0px;
+    }
+  }
   @media (max-width: 1088px) {
     width: 100%;
   }
@@ -162,7 +194,21 @@ export const TotalValue = styled.div`
   border-radius: 0px 0px 5px 5px;
   border-top: 2px solid var(--grey-3);
   background-color: var(--grey-4);
-
+  animation: slide 2s;
+  @keyframes slide {
+    0% {
+      display: none;
+    }
+    15% {
+      margin-top: 50px;
+    }
+    50% {
+      margin-top: 20px;
+    }
+    100% {
+      margin-top: 0px;
+    }
+  }
   @media (max-width: 1088px) {
     width: 100%;
   }
@@ -189,10 +235,18 @@ export const TotalValue = styled.div`
     margin-bottom: 1rem;
     font-size: var(--font-text-1);
     font-weight: var(--font-weight-2);
+    @media (max-width: 1088px) {
+      width: 95%;
+    }
 
     @media (min-width: 768px) {
       :hover {
+        transition: 0.5s ease-in;
         background-color: #b9b8b8;
+        -webkit-animation: swing 1s ease;
+        animation: swing 1s ease;
+        -webkit-animation-iteration-count: 1;
+        animation-iteration-count: 1;
       }
     }
   }
@@ -224,7 +278,12 @@ export const ContainerInBtn = styled.form`
 
     @media (min-width: 768px) {
       :hover {
+        transition: 0.5s ease-in;
         background-color: #005a26;
+        -webkit-animation: swing 1s ease;
+        animation: swing 1s ease;
+        -webkit-animation-iteration-count: 1;
+        animation-iteration-count: 1;
       }
     }
   }

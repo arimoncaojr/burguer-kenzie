@@ -55,7 +55,12 @@ export const Container = styled.div`
 
     @media (min-width: 768px) {
       :hover {
+        transition: 0.5s ease-in;
         background-color: #005a26;
+        -webkit-animation: swing 1s ease;
+        animation: swing 1s ease;
+        -webkit-animation-iteration-count: 1;
+        animation-iteration-count: 1;
       }
     }
   }
