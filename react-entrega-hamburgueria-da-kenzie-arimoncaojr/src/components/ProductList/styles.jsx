@@ -57,6 +57,7 @@ export const Container = styled.div`
 export const ContainerInBtn = styled.form`
   display: flex;
   align-items: center;
+  transition: 0.6s ease-in;
   border: 2px solid
     ${(props) => (props.focus ? "var(--grey-1)" : "var(--grey-3)")};
   border-radius: 8px;

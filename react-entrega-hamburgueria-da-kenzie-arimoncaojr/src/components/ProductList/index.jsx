@@ -115,7 +115,6 @@ export const ProductList = ({ productsList, searchProduct, backToHome }) => {
           </ContainerProducts>
         ) : (
           <ContainerProducts>
-            <h1>Estamos em Manutenção, voltamos logo!</h1>
             <div className="loader"></div>
           </ContainerProducts>
         )}
