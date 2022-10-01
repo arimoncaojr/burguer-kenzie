@@ -56,12 +56,6 @@ button{
     cursor: pointer;
 }
 
-@media (min-width: 768px){
-    button:hover{
-        opacity: 0.8;
-    }
-}
-
 :root{
     --color-primary: #27AE60;
     --color-primary-50: #93D7AF;

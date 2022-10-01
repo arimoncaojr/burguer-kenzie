@@ -58,5 +58,11 @@ export const DivBtn = styled.div`
     background-color: transparent;
     color: #bdbdbd;
     font-size: var(--font-text-3);
+
+    @media (min-width: 768px) {
+      :hover {
+        color: var(--grey-2);
+      }
+    }
   }
 `;

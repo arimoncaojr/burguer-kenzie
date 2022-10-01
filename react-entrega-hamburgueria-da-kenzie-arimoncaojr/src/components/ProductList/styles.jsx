@@ -189,6 +189,12 @@ export const TotalValue = styled.div`
     margin-bottom: 1rem;
     font-size: var(--font-text-1);
     font-weight: var(--font-weight-2);
+
+    @media (min-width: 768px) {
+      :hover {
+        background-color: #b9b8b8;
+      }
+    }
   }
 `;
 
@@ -215,6 +221,12 @@ export const ContainerInBtn = styled.form`
     background-color: var(--color-primary);
     color: var(--color-white);
     font-size: var(--font-text-2);
+
+    @media (min-width: 768px) {
+      :hover {
+        background-color: #005a26;
+      }
+    }
   }
 
   input {

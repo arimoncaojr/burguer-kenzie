@@ -52,5 +52,11 @@ export const Container = styled.div`
     background-color: var(--color-primary);
     color: var(--color-white);
     font-size: var(--font-text-2);
+
+    @media (min-width: 768px) {
+      :hover {
+        background-color: #005a26;
+      }
+    }
   }
 `;
