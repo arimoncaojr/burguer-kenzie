@@ -1,17 +1,23 @@
-export const Cart = ({ image, name, category, qntd }) => {
+export const Cart = ({ productCart, removeItem }) => {
   return (
-    <li>
-      <div>
-        <img src={image} alt="" />
-      </div>
-      <div>
-        <h4>{name}</h4>
-        <p>{category}</p>
-        <div>
-          <button type="button">Remover</button>
-          <p>Qntd: {qntd}</p>
-        </div>
-      </div>
-    </li>
+    <>
+      {productCart.map((product) => (
+        <li key={product.id}>
+          <div>
+            <img src={product.image} alt="" />
+          </div>
+          <div>
+            <h4>{product.name}</h4>
+            <p>{product.category}</p>
+            <div>
+              <button type="button" onClick={() => removeItem(product)}>
+                Remover
+              </button>
+              <p>Qntd: {product.qntd}</p>
+            </div>
+          </div>
+        </li>
+      ))}
+    </>
   );
 };

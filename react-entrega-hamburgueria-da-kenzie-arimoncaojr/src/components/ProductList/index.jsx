@@ -15,6 +15,7 @@ import { Cart } from "../Cart";
 export const ProductList = ({ productsList }) => {
   const [productCart, setProductCart] = useState([]);
   const [focus, setFocus] = useState(false);
+  const [descriptionInput, setDescriptionInput] = useState("");
 
   function addItem(newObject) {
     let existingItem = productCart.some(
@@ -35,6 +36,34 @@ export const ProductList = ({ productsList }) => {
     } else {
       setProductCart([...productCart, newObject]);
     }
+  }
+  function removeItem(itemRemoved) {
+    let existingItem = productCart.some(
+      (element) => element.id === itemRemoved.id
+    );
+
+    if (existingItem && itemRemoved.qntd > 1) {
+      const newItem = productCart.map((item) => {
+        if (item.id === itemRemoved.id) {
+          return {
+            ...item,
+            qntd: item.qntd - 1,
+          };
+        }
+        return item;
+      });
+      setProductCart(newItem);
+    } else {
+      setProductCart(
+        productCart.filter((element) => element.id !== itemRemoved.id)
+      );
+    }
+  }
+
+  function findProduct(product) {
+    setProductCart(
+      productCart.filter((element) => element.name === product.name)
+    );
   }
 
   console.log(productCart);
@@ -83,15 +112,7 @@ export const ProductList = ({ productsList }) => {
             <>
               <ListedsOnCart>
                 <ul>
-                  {productCart.map((product) => (
-                    <Cart
-                      key={product.id}
-                      image={product.image}
-                      name={product.name}
-                      category={product.category}
-                      qntd={product.qntd}
-                    ></Cart>
-                  ))}
+                  <Cart productCart={productCart} removeItem={removeItem} />
                 </ul>
               </ListedsOnCart>
               <TotalValue>
@@ -105,7 +126,9 @@ export const ProductList = ({ productsList }) => {
                       .replace(".", ",")}
                   </p>
                 </div>
-                <button type="button">Remover Todos</button>
+                <button type="button" onClick={() => setProductCart([])}>
+                  Remover Todos
+                </button>
               </TotalValue>
             </>
           )}
