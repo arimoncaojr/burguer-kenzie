@@ -36,6 +36,14 @@ export const ContainerProducts = styled.div`
   justify-content: center;
   width: 50%;
   gap: 10px;
+
+  @media (max-width: 768px) {
+    display: flex;
+    flex-wrap: unset;
+    justify-content: flex-start;
+    overflow-x: scroll;
+    width: 90%;
+  }
 `;
 
 export const ContainerSecondary = styled.div`
@@ -49,7 +57,6 @@ export const ContainerSecondary = styled.div`
 export const ContainerCart = styled.div`
   display: flex;
   flex-direction: column;
-
   .div-title {
     display: flex;
     align-items: center;
