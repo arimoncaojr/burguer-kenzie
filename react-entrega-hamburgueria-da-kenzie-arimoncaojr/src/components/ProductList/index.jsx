@@ -33,7 +33,7 @@ export const ProductList = ({ productsList, searchProduct, backToHome }) => {
         }
         return item;
       });
-      toast.warn("Você possui um produto igual no carrinho.");
+      toast.info("Você possui um produto igual no carrinho.");
       setProductCart(newItem);
     } else {
       toast.success("Produto adicionado com sucesso!");
@@ -53,10 +53,12 @@ export const ProductList = ({ productsList, searchProduct, backToHome }) => {
             qntd: item.qntd - 1,
           };
         }
+        toast.info("Você removeu apenas uma unidade do produto.");
         return item;
       });
       setProductCart(newItem);
     } else {
+      toast.success("Produto removido com sucesso!");
       setProductCart(
         productCart.filter((element) => element.id !== itemRemoved.id)
       );
