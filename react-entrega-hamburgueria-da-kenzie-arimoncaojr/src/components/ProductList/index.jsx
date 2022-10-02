@@ -53,9 +53,9 @@ export const ProductList = ({ productsList, searchProduct, backToHome }) => {
             qntd: item.qntd - 1,
           };
         }
-        toast.info("Você removeu apenas uma unidade do produto.");
         return item;
       });
+      toast.info("Você removeu apenas uma unidade do produto.");
       setProductCart(newItem);
     } else {
       toast.success("Produto removido com sucesso!");
@@ -147,7 +147,15 @@ export const ProductList = ({ productsList, searchProduct, backToHome }) => {
                       .replace(".", ",")}
                   </p>
                 </div>
-                <button type="button" onClick={() => setProductCart([])}>
+                <button
+                  type="button"
+                  onClick={() =>
+                    setProductCart(
+                      [],
+                      toast.success("Você removeu todos os itens!")
+                    )
+                  }
+                >
                   Remover Todos
                 </button>
               </TotalValue>
