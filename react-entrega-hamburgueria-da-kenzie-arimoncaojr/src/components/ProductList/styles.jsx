@@ -128,7 +128,7 @@ export const ContainerProducts = styled.div`
     animation: is-rotating 1s infinite;
     border: 6px solid #e5e5e5;
     border-radius: 50%;
-    border-top-color: #51d4db;
+    border-top-color: var(--color-primary);
     height: 50px;
     width: 50px;
 
